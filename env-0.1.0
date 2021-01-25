@@ -1,0 +1,4 @@
+PET_MCR_BUILD=0.1.0
+adminAddress=host.docker.internal:8090
+serviceGroupId=pet-mcr
+DISTR=agent

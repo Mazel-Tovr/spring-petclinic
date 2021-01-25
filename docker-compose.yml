@@ -1,0 +1,12 @@
+version: '3'
+services:
+
+  customers-service:
+    image: drill4j/spring-petclinic-sample:${PET_MCR_BUILD}
+    container_name: spring-petclinic-sample
+    mem_limit: 512M
+    volumes:
+      - ./${DISTR}:/data
+    entrypoint: ["java","-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-agentpath:/data/libdrill_agent.so=drillInstallationDir=/data,adminAddress=${adminAddress}:8090,agentId=Petclinic,groupId=${serviceGroupId},buildVersion=${PET_MCR_BUILD},logLevel=TRACE","-Djava.security.egd=file:/dev/./urandom", "-jar" ,"/app/spring-petclinic.jar"]
+    ports:
+      - 8080:8080
